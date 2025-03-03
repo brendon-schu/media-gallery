@@ -6,7 +6,6 @@ import EditItem from "./pages/EditItem";
 import ProtectedRoute from "./components/ProtectedRoute"
 
 const App = () => (
-    <Router>
         <div className="min-h-screen">
             <Routes>
                 <Route path="/" element={<Home />} />
@@ -16,7 +15,6 @@ const App = () => (
                 <Route path="/edit/:id" element={ <ProtectedRoute><EditItem /></ProtectedRoute> } />
             </Routes>
         </div>
-    </Router>
 );
 
 export default App;

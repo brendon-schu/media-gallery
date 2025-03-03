@@ -1,5 +1,7 @@
 import { useState } from "react";
 import Header from "../components/Header";
+const apiURL = import.meta.env.VITE_API_BASE_URL.replace(/\/$/, '');
+const uploadsURL = import.meta.env.VITE_UPLOADS_URL.replace(/\/$/, '');
 
 const AddItem = () => {
     const [formData, setFormData] = useState({
@@ -31,7 +33,7 @@ const AddItem = () => {
             data.append(key, key === 'tags' ? formData[key].split(',').map(t => t.trim()) : formData[key]);
         }
 
-        const res = await fetch('http://localhost:3000/api/artworks', {
+        const res = await fetch(`${apiURL}/artworks`, {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('authToken')}`

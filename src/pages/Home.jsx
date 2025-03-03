@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import ThumbnailCard from '../components/ThumbnailCard';
 import Header from '../components/Header';
+const apiURL = import.meta.env.VITE_API_BASE_URL.replace(/\/$/, '');
+const uploadsURL = import.meta.env.VITE_UPLOADS_URL.replace(/\/$/, '');
 
 const Home = () => {
     const [artworks, setArtworks] = useState([]);
@@ -20,19 +22,19 @@ const Home = () => {
 		if (selectedCategory) params.append('categories', selectedCategory);
 		if (selectedTags.length > 0) params.append('tags', selectedTags.join(','));
 
-		const res = await fetch(`http://localhost:3000/api/artworks?${params.toString()}`);
+		const res = await fetch(`${apiURL}/artworks?${params.toString()}`);
 		const data = await res.json();
 		setArtworks(data);  // Assuming you already have setArtworks
 	};
 
 	const fetchCategories = async () => {
-		const res = await fetch('http://localhost:3000/api/categories');
+		const res = await fetch(`${apiURL}/categories`);
 		const data = await res.json();
 		setCategories(data);
 	};
 
 	const fetchTags = async () => {
-		const res = await fetch('http://localhost:3000/api/tags');
+		const res = await fetch(`${apiURL}/tags`);
 		const data = await res.json();
 		setTags(data);
 	};
@@ -62,17 +64,6 @@ const Home = () => {
 		fetchFilteredArtworks();
 	}, [selectedCategory, selectedTags]);
 
-    // Fetch artworks on load
-	/*
-    useEffect(() => {
-        const fetchArtworks = async () => {
-            const res = await fetch('http://localhost:3000/api/artworks');
-            const data = await res.json();
-            setArtworks(data);
-        };
-        fetchArtworks();
-    }, []);
-	*/
 
     // When data is loaded and there's an ID in the URL, open the correct item
     useEffect(() => {
@@ -116,7 +107,7 @@ const Home = () => {
                 <div className="fixed inset-0 bg-black bg-opacity-90 flex z-50">
                     {/* Left: Full-size image container */}
                     <div className="flex-1 flex items-center justify-center">
-                        <img src={`http://localhost:3000${openItem.image_path}`} alt={openItem.title} className="max-w-full max-h-full object-contain" />
+                        <img src={`${uploadsURL}${openItem.image_path}`} alt={openItem.title} className="max-w-full max-h-full object-contain" />
                     </div>
 
                     {/* Right Sidebar */}

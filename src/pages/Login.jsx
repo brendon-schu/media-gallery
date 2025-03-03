@@ -1,13 +1,16 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
+const apiURL = import.meta.env.VITE_API_BASE_URL.replace(/\/$/, '');
+const uploadsURL = import.meta.env.VITE_UPLOADS_URL.replace(/\/$/, '');
+const homeURL = import.meta.env.VITE_HOME_URL.replace(/\/$/, '');
 
 const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const handleLogin = async (e) => {
         e.preventDefault();
-        const res = await fetch('http://localhost:3000/api/login', {
+        const res = await fetch(`${apiURL}/login`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ username, password })
@@ -17,7 +20,7 @@ const Login = () => {
             const { token } = await res.json();
             localStorage.setItem('authToken', token);
             alert('Login successful!');
-            window.location.href= "/";
+            window.location.href= homeURL;
         } else {
             alert('Invalid credentials');
         }

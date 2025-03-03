@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
+const apiURL = import.meta.env.VITE_API_BASE_URL.replace(/\/$/, '');
+const uploadsURL = import.meta.env.VITE_UPLOADS_URL.replace(/\/$/, '');
 
 const EditItem = () => {
     const { id } = useParams();
@@ -16,7 +18,7 @@ const EditItem = () => {
 
     useEffect(() => {
         const fetchItem = async () => {
-            const res = await fetch(`http://localhost:3000/api/artworks/${id}`);
+            const res = await fetch(`${apiURL}/artworks/${id}`);
             if (res.ok) {
                 const data = await res.json();
                 setFormData({
@@ -52,7 +54,7 @@ const EditItem = () => {
             }
         }
 
-        const res = await fetch(`http://localhost:3000/api/artworks/${id}`, {
+        const res = await fetch(`${apiURL}/artworks/${id}`, {
             method: 'PUT',
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('authToken')}`
