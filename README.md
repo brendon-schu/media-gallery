@@ -1,12 +1,64 @@
-# React + Vite
+# Media Gallery Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the **frontend application** for the Media Gallery project. It is built with:
 
-Currently, two official plugins are available:
+- React
+- Vite
+- Tailwind CSS
+- React Router
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 🚀 Requirements
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Node.js (for building only)
+
+---
+
+## 📦 Installation
+
+1. Clone the repository.
+2. Copy `.env.example` to `.env` and fill in your settings.
+3. Install dependencies:
+
+    ```bash
+    npm install
+    ```
+
+4. Start the development server:
+
+    ```bash
+    npm run dev
+    ```
+
+5. To build for production:
+
+    ```bash
+    npm run build
+    ```
+
+6. Upload the `dist` folder to your web server.
+
+---
+
+## ⚙️ Environment Variables
+
+| Variable               | Description                               |
+|----------------------|---------------------------------|
+| `VITE_API_BASE_URL`  | URL of the backend API           |
+| `VITE_UPLOADS_URL`   | Base URL for uploaded images |
+
+---
+
+## 🛠️ Notes
+
+- React Router's `basename` is set for `/demos/media-gallery/`.
+- Images load from `VITE_UPLOADS_URL`.
+- Routes may 404 on page reload unless proper **Apache rewrite rules** are used.
+
+---
+
+## 📄 License
+
+See [LICENSE](LICENSE) for details.
+
